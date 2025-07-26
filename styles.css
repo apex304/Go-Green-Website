@@ -1,0 +1,213 @@
+/* Reset and base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e9f5e9 0%, #b6e2a1 100%);
+  color: #325c36;
+}
+
+header {
+  background: #3ba35c;
+  color: #fff;
+  padding: 1.5rem 0 1rem 0;
+  text-align: center;
+  box-shadow: 0 2px 6px #0001;
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+nav a:hover {
+  background: #2e6e3c;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+#hero {
+  background: #dfffe1;
+  border-radius: 12px;
+  box-shadow: 0 0 16px #0002;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#hero h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+.facts {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.facts div {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 8px #0001;
+  padding: 1rem;
+  flex: 1 1 220px;
+  min-width: 200px;
+  transition: transform 0.2s;
+}
+
+.facts div:hover {
+  transform: scale(1.03);
+  box-shadow: 0 2px 16px #0002;
+}
+
+.tips-list {
+  background: #f6fff6;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 10px #0001;
+  font-size: 1.05rem;
+}
+
+.tips-list li {
+  margin-bottom: 0.75em;
+  line-height: 1.5;
+}
+
+/* Goals panel styles */
+.goals-list {
+  background: #f4fbe6;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 10px #0001;
+  font-size: 1.1rem;
+  margin-bottom: 1em;
+}
+
+.goals-list li {
+  margin-bottom: 0.75em;
+  line-height: 1.6;
+}
+
+.goals-note {
+  color: #356a3a;
+  font-size: 1.1em;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+.panel {
+  background: #f4fbe6;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0001;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Memory game styles */
+#memoryGameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 54px);
+  grid-template-rows: repeat(2, 54px);
+  gap: 8px;
+  justify-content: center;
+  margin: 1.1rem 0 1.1rem 0;
+}
+
+.memory-tile {
+  background: #c0e8c0;
+  border-radius: 8px;
+  font-size: 2em;
+  text-align: center;
+  line-height: 54px;
+  cursor: pointer;
+  box-shadow: 0 0 6px #0001;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.memory-tile:hover {
+  background: #a7dca7;
+}
+
+#memoryResetBtn {
+  background: #3ba35c;
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.5em;
+  border-radius: 8px;
+  font-size: 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#memoryResetBtn:hover {
+  background: #267f40;
+}
+
+#memoryStatus {
+  margin-top: 1em;
+  font-size: 1.1em;
+  color: #267f40;
+}
+
+footer {
+  background: #3ba35c;
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem 0;
+  font-size: 1rem;
+  margin-top: 2rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+  .facts {
+    flex-direction: column;
+  }
+  main {
+    padding: 0 0.5rem;
+  }
+  header h1 {
+    font-size: 1.25rem;
+  }
+  #memoryGameBoard {
+    grid-template-columns: repeat(4, 36px);
+    grid-template-rows: repeat(2, 36px);
+    gap: 5px;
+  }
+  .memory-tile {
+    font-size: 1.4em;
+    line-height: 36px;
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Go Green - Environmental Sustainability</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Go Green: Promoting Environmental Sustainability</h1>
+    <nav>
+      <ul>
+        <li><a href="#why">Why Sustainability?</a></li>
+        <li><a href="#tips">Eco-Friendly Tips</a></li>
+        <li><a href="#goals">Our Goals</a></li>
+        <li><a href="#memory">Eco Memory Game</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="hero">
+      <h2>Together, We Can Make a Difference</h2>
+      <p>Join the movement to protect our planet for future generations!</p>
+    </section>
+    <section id="why">
+      <h2>Why Environmental Sustainability?</h2>
+      <div class="facts">
+        <div>
+          <h3>Reduce Waste</h3>
+          <p>Each year, millions of tons of plastic end up in oceans. Sustainable choices help reduce pollution.</p>
+        </div>
+        <div>
+          <h3>Save Energy</h3>
+          <p>Simple changes like using LED bulbs or biking reduce your carbon footprint.</p>
+        </div>
+        <div>
+          <h3>Protect Wildlife</h3>
+          <p>Habitat destruction and pollution threaten countless species. Sustainability helps safeguard biodiversity.</p>
+        </div>
+      </div>
+    </section>
+    <section id="tips">
+      <h2>Eco-Friendly Tips</h2>
+      <ul class="tips-list">
+        <li>Recycle and compost to reduce landfill waste.</li>
+        <li>Use reusable bags, bottles, and containers.</li>
+        <li>Conserve water by fixing leaks and taking shorter showers.</li>
+        <li>Opt for public transport, biking, or walking.</li>
+        <li>Support local and organic products.</li>
+        <li>Plant trees in your community.</li>
+      </ul>
+    </section>
+    <!-- Goals Panel -->
+    <section id="goals" class="panel">
+      <h2>Our Goals</h2>
+      <ul class="goals-list">
+        <li><strong>Educate:</strong> Spread awareness about environmental challenges and sustainable solutions.</li>
+        <li><strong>Engage:</strong> Organize community clean-ups, tree planting events, and eco-friendly workshops.</li>
+        <li><strong>Empower:</strong> Provide resources and guidance for individuals and groups to adopt greener habits.</li>
+        <li><strong>Advocate:</strong> Support policies and initiatives that protect nature and promote sustainability.</li>
+        <li><strong>Innovate:</strong> Encourage creative solutions and technologies for environmental protection.</li>
+        <li><strong>Measure:</strong> Track and share our impact to inspire more participation.</li>
+      </ul>
+      <p class="goals-note">We believe every small action counts. Join us and help shape a greener future!</p>
+    </section>
+    <!-- Eco Memory Game Panel -->
+    <section id="memory" class="panel">
+      <h2>Eco Memory Game</h2>
+      <p>Match all pairs to win! 🌱</p>
+      <div id="memoryGameBoard"></div>
+      <button id="memoryResetBtn">Restart Game</button>
+      <div id="memoryStatus"></div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Go Green. Made with ♻️ for a better planet.</p>
+  </footer>
+  <script>
+    // Eco Memory Game
+    const memoryBoard = document.getElementById('memoryGameBoard');
+    const memoryStatus = document.getElementById('memoryStatus');
+    const memoryResetBtn = document.getElementById('memoryResetBtn');
+    let memoryTiles, memoryFlipped, memoryMatched, memoryLock;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i+1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function renderMemoryBoard() {
+      memoryBoard.innerHTML = '';
+      for (let i = 0; i < memoryTiles.length; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'memory-tile';
+        cell.textContent = memoryMatched[i] || memoryFlipped.includes(i) ? memoryTiles[i] : '';
+        cell.setAttribute('data-index', i);
+        cell.onclick = () => handleMemoryClick(i);
+        memoryBoard.appendChild(cell);
+      }
+    }
+
+    function handleMemoryClick(i) {
+      if (memoryLock || memoryMatched[i] || memoryFlipped.includes(i)) return;
+      memoryFlipped.push(i);
+      renderMemoryBoard();
+      if (memoryFlipped.length === 2) {
+        memoryLock = true;
+        setTimeout(() => {
+          if (memoryTiles[memoryFlipped[0]] === memoryTiles[memoryFlipped[1]]) {
+            memoryMatched[memoryFlipped[0]] = memoryTiles[memoryFlipped[0]];
+            memoryMatched[memoryFlipped[1]] = memoryTiles[memoryFlipped[1]];
+          }
+          memoryFlipped = [];
+          renderMemoryBoard();
+          if (memoryMatched.filter(Boolean).length === memoryTiles.length) {
+            memoryStatus.innerHTML = "You matched all pairs! 🎉";
+          } else {
+            memoryStatus.textContent = "";
+          }
+          memoryLock = false;
+        }, 700);
+      }
+    }
+
+    function resetMemoryGame() {
+      memoryTiles = ['🌲','🌲','🌏','🌏','🌻','🌻','🌊','🌊'];
+      shuffle(memoryTiles);
+      memoryFlipped = [];
+      memoryMatched = Array(memoryTiles.length).fill('');
+      memoryLock = false;
+      memoryStatus.textContent = "";
+      renderMemoryBoard();
+    }
+
+    memoryResetBtn.onclick = resetMemoryGame;
+    resetMemoryGame();
+  </script>
+</body>
+</html>
